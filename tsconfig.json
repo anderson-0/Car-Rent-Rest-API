@@ -1,32 +1,30 @@
 {
   "compilerOptions": {
-    "target": "es2017",                       
+    "target": "es2017",
     "module": "commonjs",
     "moduleResolution": "node",
     "lib": ["es6"],
     "allowJs": true,
-    "strict": true, 
-    "strictNullChecks": false,                       
-    "outDir": "./dist",                       
-    "rootDir": "./src",                       
+    "strict": true,
+    "strictNullChecks": false,
+    "outDir": "./dist",
+    "rootDir": "./src",
     "removeComments": true,
     "baseUrl": ".",
     "paths": {
-      "@controllers/*": ["./src/controllers/*"], 
+      "@controllers/*": ["./src/controllers/*"],
       "@models/*": ["./src/models/*"],
       "@views/*": ["./src/views/*"],
-      "@config/*": ["./src/config/*"]
-    },                   
-    "typeRoots": [
-      "./node_modules/@types",
-      "./src/@types"
-    ],                                        
-    "esModuleInterop": true,                  
+      "@config/*": ["./src/config/*"],
+      "@routes/*": ["./src/routes/*"]
+    },
+    "typeRoots": ["./node_modules/@types", "./src/@types"],
+    "esModuleInterop": true,
     "resolveJsonModule": true,
-    "experimentalDecorators": true,           
-    "emitDecoratorMetadata": true,            
-    "skipLibCheck": true,                     
-    "forceConsistentCasingInFileNames": true 
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
   },
   "include": ["src/**/*"]
 }
