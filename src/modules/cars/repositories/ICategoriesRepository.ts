@@ -1,4 +1,4 @@
-import { Category } from 'src/modules/cars/entities/Category';
+import { Category } from "../entities/Category";
 
 interface ICreateCategoryDTO {
   name: string;

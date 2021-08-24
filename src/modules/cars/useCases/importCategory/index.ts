@@ -1,6 +1,6 @@
-import { CategoriesRepository } from '../../repositories/implementations/CategoriesRepository';
-import { ImportCategoryController } from './ImportCategoryController';
-import { ImportCategoryUseCase } from './ImportCategoryUseCase';
+import { CategoriesRepository } from "../../repositories/implementations/CategoriesRepository";
+import { ImportCategoryController } from "./ImportCategoryController";
+import { ImportCategoryUseCase } from "./ImportCategoryUseCase";
 
 export default (): ImportCategoryController => {
   const categoriesRepository = new CategoriesRepository();

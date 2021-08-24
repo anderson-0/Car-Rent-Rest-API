@@ -3,12 +3,12 @@ import {
   CreateDateColumn,
   Entity,
   PrimaryGeneratedColumn,
-} from 'typeorm';
-import { v4 as uuidV4 } from 'uuid';
+} from "typeorm";
+import { v4 as uuidV4 } from "uuid";
 
-@Entity('specifications')
+@Entity("specifications")
 class Specification {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn("uuid")
   id?: string;
 
   @Column()
@@ -17,7 +17,7 @@ class Specification {
   @Column()
   description: string;
 
-  @CreateDateColumn({ name: 'created_at' })
+  @CreateDateColumn({ name: "created_at" })
   createdAt?: Date;
 
   constructor() {
