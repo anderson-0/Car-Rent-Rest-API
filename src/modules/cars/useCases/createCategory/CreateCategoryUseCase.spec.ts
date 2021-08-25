@@ -1,4 +1,4 @@
-import { Category } from "../../entities/Category";
+import { AppError } from "../../../../errors/AppError";
 import { CategoriesRepositoryInMemory } from "../../repositories/inMemory/CategoriesRepositoryInMemory";
 import { CreateCategoryUseCase } from "./CreateCategoryUseCase";
 
@@ -13,28 +13,25 @@ describe("Create Category Use Case", () => {
         categoriesRepositoryInMemory
       );
     });
-    it("Create new Category", async () => {
-      const category = {
-        name: "Category Test Name",
-        description: "Category Test Description",
-      };
+  });
+  describe("SHOULD NOT", () => {
+    it("Create new Category with duplicated name", async () => {
+      expect(async () => {
+        const category = {
+          name: "Category Test Name",
+          description: "Category Test Description",
+        };
 
-      await createCategoryUseCase.execute({
-        name: category.name,
-        description: category.description,
-      });
+        await createCategoryUseCase.execute({
+          name: category.name,
+          description: category.description,
+        });
 
-      const categoryExists = await categoriesRepositoryInMemory.findByName(
-        category.name
-      );
-
-      console.log(categoryExists);
-
-      expect(categoryExists).toHaveProperty("id");
-      expect(category.name).toEqual(categoryExists.name);
-      expect(category.description).toEqual(categoryExists.description);
-      expect(categoryExists.createdAt).not.toBeNull();
+        await createCategoryUseCase.execute({
+          name: category.name,
+          description: category.description,
+        });
+      }).rejects.toBeInstanceOf(AppError);
     });
   });
-  describe("SHOULD NOT", () => {});
 });
