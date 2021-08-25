@@ -1,3 +1,4 @@
+import { AppError } from "src/errors/AppError";
 import { inject, injectable } from "tsyringe";
 
 import { ISpecificationsRepository } from "../../repositories/ISpecificationsRepository";
@@ -19,7 +20,7 @@ class CreateSpecificationUseCase {
       name
     );
 
-    if (specificationExists) throw new Error("Specification already exists");
+    if (specificationExists) throw new AppError("Specification already exists");
 
     await this.specificationsRepository.create({ name, description });
   }
