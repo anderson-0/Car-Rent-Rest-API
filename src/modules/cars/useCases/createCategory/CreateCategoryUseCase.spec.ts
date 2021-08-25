@@ -19,7 +19,7 @@ describe("Create Category Use Case", () => {
         description: "Category Test Description",
       };
 
-      createCategoryUseCase.execute({
+      await createCategoryUseCase.execute({
         name: category.name,
         description: category.description,
       });
