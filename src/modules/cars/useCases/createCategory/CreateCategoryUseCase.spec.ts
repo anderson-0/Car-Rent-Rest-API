@@ -6,12 +6,29 @@ let createCategoryUseCase: CreateCategoryUseCase;
 let categoriesRepositoryInMemory: CategoriesRepositoryInMemory;
 
 describe("Create Category Use Case", () => {
+  beforeEach(() => {
+    categoriesRepositoryInMemory = new CategoriesRepositoryInMemory();
+    createCategoryUseCase = new CreateCategoryUseCase(
+      categoriesRepositoryInMemory
+    );
+  });
   describe("SHOULD", () => {
-    beforeEach(() => {
-      categoriesRepositoryInMemory = new CategoriesRepositoryInMemory();
-      createCategoryUseCase = new CreateCategoryUseCase(
-        categoriesRepositoryInMemory
+    it("Create a new category", async () => {
+      const category = {
+        name: "Category Test",
+        description: "Category description Test",
+      };
+
+      await createCategoryUseCase.execute({
+        name: category.name,
+        description: category.description,
+      });
+
+      const categoryCreated = await categoriesRepositoryInMemory.findByName(
+        category.name
       );
+
+      expect(categoryCreated).toHaveProperty("id");
     });
   });
   describe("SHOULD NOT", () => {
