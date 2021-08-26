@@ -10,14 +10,16 @@
     "outDir": "./dist",
     "rootDir": "./src",
     "removeComments": true,
-    "baseUrl": ".",
+    "baseUrl": "./src",
     "paths": {
-      "@controllers/*": ["./src/controllers/*"],
-      "@models/*": ["./src/models/*"],
-      "@views/*": ["./src/views/*"],
-      "@config/*": ["./src/config/*"]
+      "@modules/*": ["modules/*"],
+      "@config/*": ["config/*"],
+      "@errors/*": ["errors/*"],
+      "@utils/*": ["utils/*"],
+      "@middlewares/*": ["middlewares/*"]
     },
     "typeRoots": ["./node_modules/@types", "./src/@types"],
+    "types": ["@types/jest", "node"],
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "experimentalDecorators": true,
