@@ -1,68 +1,104 @@
-<div align="center">
-  <img src="https://ik.imagekit.io/danilovieira/NodeIcon_O7fexAOh0.svg" alt="NodeJS" />
-</div>
-<br>
-<br>
-<p>
-  <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
-  <img src="https://img.shields.io/badge/npm-%3E%3D6.0.0-blue.svg" />
-  <img src="https://img.shields.io/badge/node-%3E%3D10.0.0-blue.svg" />
-  <a href="https://github.com/danilo-vieira/node-typescript-setup#readme" target="_blank">
-    <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
-  </a>
-  <a href="https://github.com/danilo-vieira/node-typescript-setup/graphs/commit-activity" target="_blank">
-    <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" />
-  </a>
-  <a href="https://github.com/danilo-vieira/node-typescript-setup/blob/master/LICENSE" target="_blank">
-    <img alt="License: MIT" src="https://img.shields.io/github/license/danilo-vieira/node-typescript-setup" />
-  </a>
-</p>
+# Cadastro de carro
 
-## 📝 About
+**RF**
 
-This is a setup to make a project with [NodeJS](https://nodejs.org/en/) that already contains some configured tools like [TypeScript](https://www.typescriptlang.org/), [Jest](https://jestjs.io/), [Babel](https://babeljs.io/), [ESLint](https://eslint.org/) and [Prettier](https://prettier.io/).
+- Deve ser possível cadastrar um novo carro.
 
-## 💻 Used Technologies
+**RN**
 
-* [NodeJS](https://nodejs.org/en/)
-* [TypeScript](https://www.typescriptlang.org/)
-* [Express](https://expressjs.com/)
-* [DotEnv](https://www.npmjs.com/package/dotenv)
-* [Jest](https://jestjs.io/)
-* [Babel](https://babeljs.io/)
-* [ESLint](https://eslint.org/)
-* [Prettier](https://prettier.io/)
+- Não deve ser possível cadastrar um carro com uma placa já existente.
+- O carro deve ser cadastrado, por padrão, com disponibilidade.
+- O usuário responsável pelo cadastro deve ser um usuário administrador.
 
-## Install
+# Listagem de carros
 
-```sh
-yarn install
-```
+**RF**
 
-## Usage
+- Deve ser possível listar todos os carros disponíveis
+- Deve ser possível listar todos os carros disponíveis pelo - nome da categoria
+- Deve ser possível listar todos os carros disponíveis pelo - nome da marca
+- Deve ser possível listar todos os carros disponíveis pelo - nome do carro
 
-```sh
-yarn dev
-```
+**RN**
 
-## Run tests
+- O usuário não precisar estar logado no sistema.
 
-```sh
-yarn test
-```
+# Cadastro de Especificação no carro
 
-## Author
+**RF**
 
-👤 **Danilo Vieira <danilo_strvieira@hotmail.com>**
+- Deve ser possível cadastrar uma especificação para um carro
 
-* Github: [@danilo-vieira](https://github.com/danilo-vieira)
-* LinkedIn: [@vieira-danilo](https://linkedin.com/in/vieira-danilo)
+**RN**
 
-## Show your support
+- Não deve ser possível cadastrar uma especificação para um - carro não cadastrado.
+- Não deve ser possível cadastrar uma especificação já - existente para o mesmo carro.
+- O usuário responsável pelo cadastro deve ser um usuário - administrador.
 
-Give a ⭐️ if this project helped you!
+# Cadastro de imagens do carro
 
-## 📝 License
+**RF**
 
-Copyright © 2020 [Danilo Vieira](https://github.com/danilo-vieira).<br />
-This project is [MIT](https://github.com/danilo-vieira/node-typescript-setup/blob/master/LICENSE) licensed.
+- Deve ser possível cadastrar a imagem do carro
+
+**RNF**
+
+- Utilizar o multer para upload dos arquivos
+
+**RN**
+
+- O usuário deve poder cadastrar mais de uma imagem para o - mesmo carro
+- O usuário responsável pelo cadastro deve ser um usuário - administrador.
+
+# Alugel de carro
+
+**RF**
+
+- Deve ser possível cadastrar um aluguel
+
+**RN**
+
+- O aluguel deve ter duração mínima de 24 horas.
+- Não deve ser possível cadastrar um novo aluguel caso já - exista um aberto para o mesmo usuário
+- Não deve ser possível cadastrar um novo aluguel caso já - exista um aberto para o mesmo carro
+- O usuário deve estar logado na aplicação
+- Ao realizar um aluguel, o status do carro deverá ser - alterado para indisponível
+
+# Devolução de carro
+
+**RF**
+
+- Deve ser possível realizar a devolução de um carro
+
+**RN**
+
+- Se o carro for devolvido com menos de 24 horas, deverá - ser cobrado diária completa.
+- Ao realizar a devolução, o carro deverá ser liberado para - outro aluguel.
+- Ao realizar a devolução, o usuário deverá ser liberado - para outro aluguel.
+- Ao realizar a devolução, deverá ser calculado o total do - aluguel.
+- Caso o horário de devolução seja superior ao horário - previsto de entrega, deverá ser cobrado multa - proporcional aos dias de atraso.
+- Caso haja multa, deverá ser somado ao total do aluguel.
+- O usuário deve estar logado na aplicação
+
+# Listagem de Alugueis para usuário
+
+**RF**
+
+- Deve ser possível realizar a busca de todos os alugueis para o usuário
+
+**RN**
+
+- O usuário deve estar logado na aplicação
+
+# Recuperar Senha
+
+**RF**
+
+- Deve ser possível o usuário recuperar a senha informando o e-mail
+- O usuário deve receber um e-mail com o passo a passo para a recuperação da senha
+- O usuário deve conseguir inserir uma nova senha
+
+**RN**
+
+- O usuário precisa informar uma nova senha
+- O link enviado para a recuperação deve expirar em 3 horas
