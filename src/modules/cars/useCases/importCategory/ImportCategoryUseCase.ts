@@ -3,6 +3,7 @@ import csvParse from "csv-parse";
 import { inject, injectable } from "tsyringe";
 
 import { ICategoriesRepository } from "@modules/cars/repositories/ICategoriesRepository";
+
 import { Category } from "@modules/cars/entities/Category";
 
 interface IImportCategory {
