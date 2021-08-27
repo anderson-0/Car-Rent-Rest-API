@@ -1,5 +1,5 @@
-import { categoriesRoutes } from "src/routes/categories.routes";
-import { specificationsRoutes } from "src/routes/specifications.routes";
+import { categoriesRoutes } from "../../src/routes/categories.routes";
+import { specificationsRoutes } from "../../src/routes/specifications.routes";
 import { Router } from "express";
 import { usersRoutes } from "./users.routes";
 import { authenticationRoutes } from "./authentication.routes";
