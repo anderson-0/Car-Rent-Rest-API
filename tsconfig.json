@@ -14,9 +14,8 @@
     "paths": {
       "@modules/*": ["modules/*"],
       "@config/*": ["config/*"],
-      "@errors/*": ["errors/*"],
       "@utils/*": ["utils/*"],
-      "@middlewares/*": ["middlewares/*"]
+      "@shared/*": ["shared/*"]
     },
     "typeRoots": ["./node_modules/@types", "./src/@types"],
     "types": ["@types/jest", "node"],
