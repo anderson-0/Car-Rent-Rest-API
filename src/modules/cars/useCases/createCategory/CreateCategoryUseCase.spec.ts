@@ -3,9 +3,10 @@ import { AppError } from "@shared/errors/AppError";
 import { CategoriesRepositoryInMemory } from "@modules/cars/repositories/inMemory/CategoriesRepositoryInMemory";
 
 import { CreateCategoryUseCase } from "./CreateCategoryUseCase";
+import { ICategoriesRepository } from "@modules/cars/repositories/ICategoriesRepository";
 
 let createCategoryUseCase: CreateCategoryUseCase;
-let categoriesRepositoryInMemory: CategoriesRepositoryInMemory;
+let categoriesRepositoryInMemory: ICategoriesRepository;
 
 describe("Create Category Use Case", () => {
   beforeEach(() => {
