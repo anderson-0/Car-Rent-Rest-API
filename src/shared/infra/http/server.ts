@@ -4,14 +4,16 @@ import "express-async-errors";
 import swaggerUi from "swagger-ui-express";
 import "dotenv/config";
 
+import "@shared/container";
+
 import { AppError } from "@shared/errors/AppError";
 import swaggerFile from "../../../swagger.json";
 
-import "@shared/infra/typeorm";
-import "@shared/container";
+import createConnection from "@shared/infra/typeorm";
 
 import { router } from "./routes";
 
+createConnection();
 const app = express();
 
 app.use(express.json());
