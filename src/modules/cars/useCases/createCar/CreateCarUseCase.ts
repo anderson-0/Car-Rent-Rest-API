@@ -14,6 +14,7 @@ class CreateCarUseCase {
   ) {}
 
   async execute({
+    id,
     name,
     description,
     dailyRate,
@@ -21,6 +22,7 @@ class CreateCarUseCase {
     fineAmount,
     brand,
     categoryId,
+    specifications,
   }: ICreateCarDTO): Promise<Car> {
     const carExists = await this.carsRepository.findByLicensePlate(
       licensePlate
@@ -29,6 +31,7 @@ class CreateCarUseCase {
     if (carExists) throw new AppError("License Plate already in use");
 
     const car = await this.carsRepository.create({
+      id,
       name,
       description,
       dailyRate,
@@ -36,6 +39,7 @@ class CreateCarUseCase {
       fineAmount,
       brand,
       categoryId,
+      specifications,
     });
 
     return car;
