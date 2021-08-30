@@ -37,9 +37,11 @@ class Rental {
   updatedAt: Date;
 
   constructor() {
-    this.id = this.id || uuidV4();
-    this.createdAt = new Date();
-    this.updatedAt = new Date();
+    if (!this.id) {
+      this.id = uuidV4();
+      this.createdAt = new Date();
+      this.updatedAt = new Date();
+    }
   }
 }
 
