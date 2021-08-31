@@ -48,7 +48,6 @@ class CarsRepositoryInMemory implements ICarsRepository {
     const car = new Car();
 
     Object.assign(car, {
-      id,
       name,
       description,
       dailyRate,

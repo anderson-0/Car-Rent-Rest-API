@@ -14,7 +14,6 @@ class CreateCarUseCase {
   ) {}
 
   async execute({
-    id,
     name,
     description,
     dailyRate,
@@ -31,7 +30,6 @@ class CreateCarUseCase {
     if (carExists) throw new AppError("License Plate already in use");
 
     const car = await this.carsRepository.create({
-      id,
       name,
       description,
       dailyRate,
