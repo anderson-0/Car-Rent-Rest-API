@@ -1,18 +1,30 @@
-import { RentalsRepositoryInMemory } from "@modules/rentals/repositories/inMemory/RentalsRepositoryInMemory";
-import { IRentalsRepository } from "@modules/rentals/repositories/IRentalsRepository";
-
-import { CreateRentalUseCase } from "@modules/rentals/useCases/createRentalUseCase/CreateRentalUseCase";
-import { AppError } from "@shared/errors/AppError";
 import dayjs from "dayjs";
+
+import { RentalsRepositoryInMemory } from "@modules/rentals/repositories/inMemory/RentalsRepositoryInMemory";
+
+import { IRentalsRepository } from "@modules/rentals/repositories/IRentalsRepository";
+import { IDateProvider } from "@shared/container/providers/DateProvider/IDateProvider";
+import { CreateRentalUseCase } from "@modules/rentals/useCases/createRentalUseCase/CreateRentalUseCase";
+
+import { DayjsDateProvider } from "@shared/container/providers/DateProvider/implementations/DayjsDateProvider";
+
+import { AppError } from "@shared/errors/AppError";
 
 let createRentalUseCase: CreateRentalUseCase;
 let rentalsRepositoryInMemory: IRentalsRepository;
-const dayAdd24Hours = dayjs().add(1, "day").toDate();
+let dayJsProvider: IDateProvider;
 
 describe("Create Rental Use Case", () => {
+  dayJsProvider = new DayjsDateProvider();
+  const dayAdd24Hours = dayJsProvider.add(new Date(), 1, "day");
+
   beforeEach(() => {
     rentalsRepositoryInMemory = new RentalsRepositoryInMemory();
-    createRentalUseCase = new CreateRentalUseCase(rentalsRepositoryInMemory);
+
+    createRentalUseCase = new CreateRentalUseCase(
+      rentalsRepositoryInMemory,
+      dayJsProvider
+    );
   });
   describe("SHOULD", () => {
     it("Create a new rental", async () => {

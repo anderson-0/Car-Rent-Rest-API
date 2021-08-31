@@ -8,13 +8,15 @@ import { ICreateRentalDTO } from "@modules/rentals/dtos/ICreateRentalDTO";
 
 import { IRentalsRepository } from "@modules/rentals/repositories/IRentalsRepository";
 import { Rental } from "@modules/rentals/infra/typeorm/entities/Rental";
+import { IDateProvider } from "@shared/container/providers/DateProvider/IDateProvider";
 
 dayjs.extend(utc);
 
 @injectable()
 class CreateRentalUseCase {
   constructor(
-    @inject("RentalsRepository") private rentalsRepository: IRentalsRepository
+    @inject("RentalsRepository") private rentalsRepository: IRentalsRepository,
+    @inject("DateProvider") private dateProvider: IDateProvider
   ) {}
 
   async execute({
@@ -37,12 +39,11 @@ class CreateRentalUseCase {
       throw new AppError("This user already has an opened rental");
 
     // car rental should be 24h minimum
-    const expectedReturnDateUtc = dayjs(expectedReturnDate)
-      .utc()
-      .local()
-      .format();
-    const dateNowUtc = dayjs().utc().local().format();
-    const compare = dayjs(expectedReturnDateUtc).diff(dateNowUtc, "hours");
+    const dateNow = this.dateProvider.now();
+    const compare = this.dateProvider.compareInHours(
+      dateNow,
+      expectedReturnDate
+    );
 
     if (compare < minimumRentalHours)
       throw new AppError(
