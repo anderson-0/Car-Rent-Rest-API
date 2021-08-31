@@ -6,9 +6,11 @@ import { AppError } from "@shared/errors/AppError";
 
 import { ICreateRentalDTO } from "@modules/rentals/dtos/ICreateRentalDTO";
 
-import { IRentalsRepository } from "@modules/rentals/repositories/IRentalsRepository";
-import { Rental } from "@modules/rentals/infra/typeorm/entities/Rental";
 import { IDateProvider } from "@shared/container/providers/DateProvider/IDateProvider";
+import { ICarsRepository } from "@modules/cars/repositories/ICarsRepository";
+import { IRentalsRepository } from "@modules/rentals/repositories/IRentalsRepository";
+
+import { Rental } from "@modules/rentals/infra/typeorm/entities/Rental";
 
 dayjs.extend(utc);
 
@@ -16,6 +18,7 @@ dayjs.extend(utc);
 class CreateRentalUseCase {
   constructor(
     @inject("RentalsRepository") private rentalsRepository: IRentalsRepository,
+    @inject("CarsRepository") private carsRepository: ICarsRepository,
     @inject("DateProvider") private dateProvider: IDateProvider
   ) {}
 
@@ -55,6 +58,8 @@ class CreateRentalUseCase {
       carId,
       expectedReturnDate,
     });
+
+    await this.carsRepository.updateAvailability(carId, false);
 
     return rental;
   }
