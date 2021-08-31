@@ -9,9 +9,12 @@ import { CreateRentalUseCase } from "@modules/rentals/useCases/createRentalUseCa
 import { DayjsDateProvider } from "@shared/container/providers/DateProvider/implementations/DayjsDateProvider";
 
 import { AppError } from "@shared/errors/AppError";
+import { CarsRepositoryInMemory } from "@modules/cars/repositories/inMemory/CarsRepositoryInMemory";
+import { ICarsRepository } from "@modules/cars/repositories/ICarsRepository";
 
 let createRentalUseCase: CreateRentalUseCase;
 let rentalsRepositoryInMemory: IRentalsRepository;
+let carsRepositoryInMemory: ICarsRepository;
 let dayJsProvider: IDateProvider;
 
 describe("Create Rental Use Case", () => {
@@ -20,17 +23,28 @@ describe("Create Rental Use Case", () => {
 
   beforeEach(() => {
     rentalsRepositoryInMemory = new RentalsRepositoryInMemory();
-
+    carsRepositoryInMemory = new CarsRepositoryInMemory();
     createRentalUseCase = new CreateRentalUseCase(
       rentalsRepositoryInMemory,
+      carsRepositoryInMemory,
       dayJsProvider
     );
   });
   describe("SHOULD", () => {
     it("Create a new rental", async () => {
+      const car = await carsRepositoryInMemory.create({
+        name: "Test",
+        description: "Car Test",
+        dailyRate: 100,
+        licensePlate: "test",
+        fineAmount: 40,
+        categoryId: "1234",
+        brand: "brand",
+      });
+
       const rental = await createRentalUseCase.execute({
         userId: "12345",
-        carId: "121212",
+        carId: car.id,
         expectedReturnDate: dayAdd24Hours,
       });
 
