@@ -12,10 +12,10 @@ class Rental {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
-  @Column()
+  @Column({ name: "car_id" })
   carId: string;
 
-  @Column()
+  @Column({ name: "user_id" })
   userId: string;
 
   @Column({ name: "start_date" })
@@ -30,10 +30,10 @@ class Rental {
   @Column()
   total: number;
 
-  @CreateDateColumn()
+  @CreateDateColumn({ name: "created_at" })
   createdAt: Date;
 
-  @UpdateDateColumn()
+  @UpdateDateColumn({ name: "updated_at" })
   updatedAt: Date;
 
   constructor() {
