@@ -29,7 +29,7 @@ describe("Create Category Controller", () => {
   });
 
   describe("SHOULD", () => {
-    it("", async () => {
+    it("Create new category", async () => {
       const responseToken = await request(app).post("/sessions").send({
         email: "admin@rentx.com",
         password: "admin",
@@ -51,5 +51,26 @@ describe("Create Category Controller", () => {
     });
   });
 
-  describe("SHOULD NOT", () => {});
+  describe("SHOULD NOT", () => {
+    it("Create new Category with duplicated name", async () => {
+      const responseToken = await request(app).post("/sessions").send({
+        email: "admin@rentx.com",
+        password: "admin",
+      });
+
+      const { token } = responseToken.body;
+
+      const response = await request(app)
+        .post("/categories")
+        .send({
+          name: "Category Super Test",
+          description: "Category Super Test",
+        })
+        .set({
+          Authorization: `Bearer ${token}`,
+        });
+
+      expect(response.status).toBe(400);
+    });
+  });
 });
