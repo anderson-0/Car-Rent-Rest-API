@@ -15,6 +15,7 @@ interface ICarsRepository {
     categoryId,
     brand,
   }: ICreateCarDTO): Promise<Car>;
+  updateAvailability(carId: string, available: boolean): Promise<void>;
 }
 
 export { ICarsRepository };
