@@ -43,18 +43,18 @@ describe("Create Car Use Case", () => {
   });
   describe("SHOULD NOT", () => {
     it("Create new Car with duplicated license plate", async () => {
-      expect(async () => {
-        const car1 = await createCarUseCase.execute({
-          name: "Car 1 Name",
-          description: "Car 1 Description",
-          dailyRate: 100,
-          licensePlate: "ABC-1234",
-          fineAmount: 60,
-          brand: "Brand 1",
-          categoryId: "category1",
-        });
+      await createCarUseCase.execute({
+        name: "Car 1 Name",
+        description: "Car 1 Description",
+        dailyRate: 100,
+        licensePlate: "ABC-1234",
+        fineAmount: 60,
+        brand: "Brand 1",
+        categoryId: "category1",
+      });
 
-        await createCarUseCase.execute({
+      await expect(
+        createCarUseCase.execute({
           name: "Car 2 Name",
           description: "Car 2 Description",
           dailyRate: 100,
@@ -62,8 +62,8 @@ describe("Create Car Use Case", () => {
           fineAmount: 60,
           brand: "Brand 2",
           categoryId: "category2",
-        });
-      }).rejects.toBeInstanceOf(AppError);
+        })
+      ).rejects.toEqual(new AppError("License Plate already in use"));
     });
   });
 });

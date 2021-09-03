@@ -40,12 +40,12 @@ describe("Authentica User Use Case", () => {
 
   describe("SHOULD NOT", () => {
     it("Authenticate a non-existing user", async () => {
-      expect(async () => {
-        const result = await authenticateUserUseCase.execute({
+      await expect(
+        authenticateUserUseCase.execute({
           email: "email@email.com",
           password: "123456",
-        });
-      }).rejects.toBeInstanceOf(AppError);
+        })
+      ).rejects.toEqual(new AppError("Email/password incorrect"));
     });
 
     it("Authenticate incorrect password", async () => {
@@ -58,12 +58,12 @@ describe("Authentica User Use Case", () => {
 
       await createUserUseCase.execute(user);
 
-      expect(async () => {
-        const result = await authenticateUserUseCase.execute({
+      await expect(
+        authenticateUserUseCase.execute({
           email: "anderson@abc.com",
           password: "123456",
-        });
-      }).rejects.toBeInstanceOf(AppError);
+        })
+      ).rejects.toEqual(new AppError("Email/password incorrect"));
     });
   });
 });

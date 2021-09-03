@@ -22,10 +22,10 @@ class AuthenticateUserUseCase {
   }: IAuthenticateUserRequestDTO): Promise<IAuthenticateUserResponseDTO> {
     const user = await this.usersRepository.findByEmail(email);
 
-    if (!user) throw new AppError("Email/password incorrect", 401);
+    if (!user) throw new AppError("Email/password incorrect");
 
     const passwordMatch = await compare(password, user.password);
-    if (!passwordMatch) throw new AppError("Email/password incorrect", 401);
+    if (!passwordMatch) throw new AppError("Email/password incorrect");
 
     const token = sign({}, "secret", {
       subject: user.id,
