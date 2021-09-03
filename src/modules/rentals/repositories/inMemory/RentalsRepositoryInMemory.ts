@@ -10,11 +10,28 @@ class RentalsRepositoryInMemory implements IRentalsRepository {
     carId,
     userId,
     expectedReturnDate,
+    id,
+    endDate,
+    total,
   }: ICreateRentalDTO): Promise<Rental> {
     const rental = new Rental();
 
-    Object.assign(rental, { carId, userId, expectedReturnDate });
+    Object.assign(rental, {
+      carId,
+      userId,
+      expectedReturnDate,
+      id,
+      endDate,
+      total,
+    });
     this.rentals.push(rental);
+    return rental;
+  }
+
+  async findById(rentalId: string): Promise<Rental> {
+    const rental = this.rentals.find(
+      rental => rental.id === rentalId && !rental.endDate
+    );
     return rental;
   }
 
