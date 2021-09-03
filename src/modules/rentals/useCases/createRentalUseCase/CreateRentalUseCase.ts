@@ -43,9 +43,10 @@ class CreateRentalUseCase {
 
     // car rental should be 24h minimum
     const dateNow = this.dateProvider.now();
-    const compare = this.dateProvider.compareInHours(
+    const compare = this.dateProvider.compare(
       dateNow,
-      expectedReturnDate
+      expectedReturnDate,
+      "hour"
     );
 
     if (compare < minimumRentalHours)

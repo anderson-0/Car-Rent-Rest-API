@@ -1,12 +1,11 @@
+import { timeUnit } from "@shared/types/TimeUnit";
+
 interface IDateProvider {
-  compareInHours(startDate: Date, endDate: Date): number;
+  compare(startDate: Date, endDate: Date, unit: timeUnit): number;
   convertToUtc(date: Date): string;
   now(): Date;
-  add(
-    date: Date,
-    quantity: number,
-    unit: "second" | "minute" | "hour" | "day" | "month" | "year"
-  );
+  add(date: Date, quantity: number, unit: timeUnit);
+  sub(date: Date, quantity: number, unit: timeUnit);
 }
 
 export { IDateProvider };
