@@ -5,18 +5,32 @@ import { ICreateUserDTO } from "@modules/accounts/dtos/ICreateUserDTO";
 import { UsersRepositoryInMemory } from "@modules/accounts/repositories/inMemory/UsersRepositoryInMemory";
 import { IUsersRepository } from "@modules/accounts/repositories/IUsersRepository";
 
+import { IUsersTokensRepository } from "@modules/accounts/repositories/IUsersTokensRepository";
+import { UsersTokensRepositoryInMemory } from "@modules/accounts/repositories/inMemory/UsersTokensRepositoryInMemory";
+
+import { IDateProvider } from "@shared/container/providers/DateProvider/IDateProvider";
+import { DayjsDateProvider } from "@shared/container/providers/DateProvider/implementations/DayjsDateProvider";
+
 import { CreateUserUseCase } from "@modules/accounts/useCases/createUser/CreateUserUseCase";
 import { AuthenticateUserUseCase } from "./AuthenticateUserUseCase";
 
 let usersRepository: IUsersRepository;
+let usersTokensRepository: IUsersTokensRepository;
+let dateProvider: IDateProvider;
 let authenticateUserUseCase: AuthenticateUserUseCase;
 let createUserUseCase: CreateUserUseCase;
 
 describe("Authentica User Use Case", () => {
   beforeEach(() => {
     usersRepository = new UsersRepositoryInMemory();
+    usersTokensRepository = new UsersTokensRepositoryInMemory();
+    dateProvider = new DayjsDateProvider();
     createUserUseCase = new CreateUserUseCase(usersRepository);
-    authenticateUserUseCase = new AuthenticateUserUseCase(usersRepository);
+    authenticateUserUseCase = new AuthenticateUserUseCase(
+      usersRepository,
+      usersTokensRepository,
+      dateProvider
+    );
   });
   describe("SHOULD", () => {
     it("Authenticate an existing user", async () => {

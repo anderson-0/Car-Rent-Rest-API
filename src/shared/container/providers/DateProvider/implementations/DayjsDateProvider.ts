@@ -8,12 +8,12 @@ import { IDateProvider } from "../IDateProvider";
 class DayjsDateProvider implements IDateProvider {
   add(date: Date, quantity: number, unit: timeUnit) {
     const newDate = dayjs(date).add(quantity, unit);
-    return newDate;
+    return newDate.toDate();
   }
 
   sub(date: Date, quantity: number, unit: timeUnit) {
     const newDate = dayjs(date).subtract(quantity, unit);
-    return newDate;
+    return newDate.toDate();
   }
 
   now(): Date {
