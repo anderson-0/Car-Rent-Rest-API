@@ -18,8 +18,8 @@
     "start": "node dist/server.js",
     "dev": "ts-node-dev -r tsconfig-paths/register --respawn --transpile-only --ignore-watch node_modules --no-notify --inspect=0.0.0.0 src/shared/infra/http/server.ts",
     "test": "NODE_ENV=test jest --verbose --runInBand --detectOpenHandles",
-    "typeorm": "ts-node-dev ./node_modules/typeorm/cli",
-    "seed:admin": "ts-node-dev ./src/shared/infra/typeorm/seed/admin.ts"
+    "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli",
+    "seed:admin": "ts-node-dev -r tsconfig-paths/register ./src/shared/infra/typeorm/seed/admin.ts"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
