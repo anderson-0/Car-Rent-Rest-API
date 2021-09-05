@@ -6,6 +6,7 @@ interface IDateProvider {
   now(): Date;
   add(date: Date, quantity: number, unit: timeUnit): Date;
   sub(date: Date, quantity: number, unit: timeUnit): Date;
+  isBefore(startDate: Date, endDate: Date): boolean;
 }
 
 export { IDateProvider };

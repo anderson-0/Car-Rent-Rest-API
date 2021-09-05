@@ -29,6 +29,10 @@ class DayjsDateProvider implements IDateProvider {
     const endDateUtc = this.convertToUtc(endDate);
     return dayjs(endDateUtc).diff(startDateUtc, unit);
   }
+
+  isBefore(startDate: Date, endDate: Date): boolean {
+    return dayjs(startDate).isBefore(endDate);
+  }
 }
 
 export { DayjsDateProvider };
