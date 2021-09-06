@@ -1,8 +1,8 @@
 {
-  "name": "node-typescript-structure",
+  "name": "rentx-rest-api",
   "version": "1.0.0",
-  "description": "NodeJS project structure with TypeScript, ESLint, Prettier and more!",
-  "author": "Danilo Vieira <danilo_strvieira@hotmail.com>",
+  "description": "RentX Rest API",
+  "author": "Anderson Mattjie",
   "main": "./src/server.ts",
   "license": "MIT",
   "repository": {
@@ -47,6 +47,7 @@
     "@babel/cli": "^7.10.3",
     "@babel/core": "^7.10.3",
     "@babel/node": "^7.10.3",
+    "@babel/plugin-proposal-class-properties": "^7.14.5",
     "@babel/plugin-proposal-decorators": "^7.14.5",
     "@babel/preset-env": "^7.10.3",
     "@babel/preset-typescript": "^7.10.1",
