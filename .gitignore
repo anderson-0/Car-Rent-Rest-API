@@ -11,3 +11,5 @@ dist
 tmp/
 yarn-error.log
 coverage
+!tmp/gitkeep
+ormconfig.json
