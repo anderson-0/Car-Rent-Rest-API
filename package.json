@@ -2,7 +2,7 @@
   "name": "rentx-rest-api",
   "version": "1.0.0",
   "description": "RentX Rest API",
-  "author": "Anderson Mattjie",
+  "author": "Anderson Mattjie <anderson.consultan.it@outlook.com>",
   "main": "./src/server.ts",
   "license": "MIT",
   "repository": {
