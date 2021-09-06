@@ -13,8 +13,8 @@ console.log(env, dir, ext);
 const typeORMConfig: ConnectionOptions = {
   name: "default",
   type: "postgres",
-  host: process.env.NODE_ENV === "test" ? "localhost" : "database",
-  database: process.env.NODE_ENV === "test" ? "rentx_test" : "rentx",
+  host: env !== "test" ? "localhost" : "database",
+  database: env === "test" ? "rentx_test" : "rentx",
   port: 5432,
   username: "docker",
   password: "ignite",
